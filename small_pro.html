@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElectroShop - E-Commerce Demo (CSS Position Lesson)</title>
+  
+  <!-- Google Font សម្រាប់អក្សរខ្មែរ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Standard Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Link ទៅកាន់ File CSS External (style.css) -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- <style>
+    /* ===================================================
+       ១. GLOBAL RESET & BASE STYLES
+       =================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Kantumruy Pro', Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #334155;
+      line-height: 1.5;
+      padding-top: 70px; /* ទុកគម្លាតខាងលើសម្រាប់ Fixed Header កម្ពស់ 70px */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Container កំណត់ទំហំទទឹង និងតម្រឹមកណ្តាលឱ្យស្មើគ្នាគ្រប់ផ្នែក */
+    .container {
+      width: 94%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ===================================================
+       ២. HEADER (POSITION: FIXED & ALIGNED WITH CONTAINER)
+       =================================================== */
+    .main-header {
+      position: fixed; /* ១. Position Fixed: ជាប់នៅផ្នែកខាងលើ Browser រហូត */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #0f172a;
+      z-index: 1000;
+    }
+
+    /* Container ក្នុង Header កំណត់ max-width ស្មើនឹង Banner */
+    .header-container {
+      width: 94%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 70px;
+    }
+
+    /* ផ្នែកខាងឆ្វេង៖ Logo (តម្រឹមស្មើនឹងគែមឆ្វេង Banner) */
+    .header-left {
+      display: inline-block;
+      width: 25%;
+      height: 70px;
+      line-height: 70px;
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    .brand-logo {
+      font-size: 22px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .brand-logo i {
+      color: #f59e0b;
+      margin-right: 6px;
+    }
+
+    /* ផ្នែកកណ្តាល៖ ប្រអប់ស្វែងរក */
+    .header-center {
+      display: inline-block;
+      width: 48%;
+      height: 70px;
+      line-height: 70px;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .search-box {
+      position: relative; /* ២. Position Relative: ធ្វើជា Parent សម្រាប់ Absolute Search Button */
+      display: inline-block;
+      width: 100%;
+      vertical-align: middle;
+      line-height: normal;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 45px 0 15px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background-color: #1e293b;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .search-btn {
+      position: absolute; /* ៣. Position Absolute: រំកិលប៊ូតុងស្វែងរកទៅជ្រុងស្ដាំក្នុងប្រអប់ Input */
+      top: 5px;
+      right: 5px;
+      width: 30px;
+      height: 30px;
+      background-color: #2563eb;
+      border: none;
+      border-radius: 4px;
+      color: #ffffff;
+      cursor: pointer;
+      line-height: 30px;
+      text-align: center;
+    }
+
+    /* ផ្នែកខាងស្ដាំ៖ Icons (តម្រឹមស្មើនឹងគែមស្ដាំ Banner) */
+    .header-right {
+      display: inline-block;
+      width: 25%;
+      height: 70px;
+      line-height: 70px;
+      vertical-align: middle;
+      text-align: right;
+    }
+
+    .action-btn {
+      position: relative; /* ៤. Position Relative: ធ្វើជា Parent សម្រាប់ Badge ចំនួនទំនិញ */
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+      padding: 6px 8px;
+      color: #ffffff;
+      font-size: 20px;
+      margin-left: 12px;
+      cursor: pointer;
+    }
+
+    /* ផ្លាក Badge បង្ហាញចំនួនទំនិញលើ Icon */
+    .icon-badge {
+      position: absolute; /* ៥. Position Absolute: ដាក់នៅជ្រុងខាងលើស្ដាំនៃ Icon នីមួយៗ */
+      top: -6px;
+      right: -6px;
+      background-color: #dc2626;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      line-height: 14px;
+      text-align: center;
+      border-radius: 50%;
+      border: 2px solid #0f172a;
+    }
+
+    /* ===================================================
+       ៣. CATEGORY NAVBAR (POSITION: STICKY)
+       =================================================== */
+    .category-navbar {
+      position: sticky; /* ៦. Position Sticky: ជាប់នៅខាងក្រោម Header ពេល Scroll មកដល់ */
+      top: 70px;
+      z-index: 900;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .cat-list {
+      list-style: none;
+    }
+
+    .cat-item {
+      display: inline-block;
+      margin: 0 8px;
+    }
+
+    .cat-link {
+      display: inline-block;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+      border-radius: 6px;
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .cat-link.active {
+      background-color: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+
+    .cat-link.hot-deal {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    /* ===================================================
+       ៤. HERO BANNER (POSITION: RELATIVE & ABSOLUTE + Z-INDEX)
+       =================================================== */
+    .hero-section {
+      margin: 25px 0 35px;
+    }
+
+    .hero-banner {
+      position: relative; /* ៧. Position Relative: ធ្វើជា Parent សម្រាប់ Absolute Promo Tag */
+      background-color: #1e40af;
+      border-radius: 12px;
+      padding: 40px 35px;
+      color: #ffffff;
+    }
+
+    /* ផ្លាកពិន្ទុបញ្ចុះតម្លៃ Absolute Tag */
+    .hero-tag {
+      position: absolute; /* ៨. Position Absolute: ដាក់នៅជ្រុងខាងលើស្ដាំនៃ Banner */
+      top: 18px;
+      right: 25px;
+      background-color: #ea580c;
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      z-index: 10; /* កំណត់ z-index: 10 ដើម្បីឱ្យ Badge ស្ថិតនៅខាងលើរូបភាព */
+    }
+
+    .hero-content {
+      display: inline-block;
+      width: 58%;
+      vertical-align: middle;
+    }
+
+    .hero-subtitle {
+      color: #93c5fd;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: #e0e7ff;
+      margin-bottom: 20px;
+      max-width: 480px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      background-color: #f59e0b;
+      color: #0f172a;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .hero-image-wrap {
+      position: relative; /* ៩. Position Relative: សម្រាប់ដាក់ Floating Pill លើរូបភាព */
+      display: inline-block;
+      width: 38%;
+      vertical-align: middle;
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .hero-img {
+      max-height: 220px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .floating-pill {
+      position: absolute; /* ១០. Position Absolute: ដាក់លើរូបភាព Banner ជ្រុងខាងក្រោមឆ្វេង */
+      bottom: 12px;
+      left: 20px;
+      background-color: #0f172a;
+      border: 1px solid #38bdf8;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #ffffff;
+      z-index: 5;
+    }
+
+    .floating-pill i {
+      color: #f59e0b;
+      margin-right: 4px;
+    }
+
+    /* ===================================================
+       ៥. FEATURES SECTION (៤ ប្រអប់តម្រៀបស្មើគ្នាដោយ INLINE-BLOCK)
+       =================================================== */
+    .features-section {
+      margin-bottom: 35px;
+      text-align: center;
+    }
+
+    .feature-card {
+      display: inline-block;
+      width: 23%;
+      margin: 0 0.8%;
+      background-color: #ffffff;
+      padding: 18px 12px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      vertical-align: top;
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      color: #2563eb;
+      margin-bottom: 8px;
+    }
+
+    .feature-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    /* ===================================================
+       ៦. PRODUCTS SECTION (POSITION: RELATIVE & ABSOLUTE)
+       =================================================== */
+    .section-header {
+      margin-bottom: 18px;
+    }
+
+    .sec-title {
+      display: inline-block;
+      width: 70%;
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      vertical-align: middle;
+    }
+
+    .sec-title i {
+      color: #dc2626;
+      margin-right: 6px;
+    }
+
+    .see-all-wrap {
+      display: inline-block;
+      width: 28%;
+      text-align: right;
+      vertical-align: middle;
+    }
+
+    .see-all-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2563eb;
+    }
+
+    .product-grid {
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      position: relative; /* ១១. Position Relative: ធ្វើជា Parent នៃ Badges ក្នុង Card */
+      display: inline-block;
+      width: 23.2%;
+      margin: 0 0.8% 20px;
+      vertical-align: top;
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .product-img-box {
+      position: relative; /* ១២. Position Relative: សម្រាប់ដាក់ Absolute Badges លើរូបភាព */
+      width: 100%;
+      height: 180px;
+      background-color: #f8fafc;
+      overflow: hidden;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Badges លើរូបភាពផលិតផល */
+    .badge-discount {
+      position: absolute; /* ១៣. Position Absolute: ផ្លាកបញ្ចុះតម្លៃនៅជ្រុងលើឆ្វេង */
+      top: 10px;
+      left: 10px;
+      background-color: #dc2626;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      z-index: 5;
+    }
+
+    .badge-hot {
+      position: absolute; /* ១៤. Position Absolute: ផ្លាក Hot Deal */
+      top: 10px;
+      left: 10px;
+      background-color: #ea580c;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      z-index: 5;
+    }
+
+    .badge-new {
+      position: absolute; /* ១៥. Position Absolute: ផ្លាក New ថ្មី */
+      top: 10px;
+      left: 10px;
+      background-color: #16a34a;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      z-index: 5;
+    }
+
+    .btn-card-wishlist {
+      position: absolute; /* ១៦. Position Absolute: ប៊ូតុងបេះដូងជ្រុងលើស្ដាំ */
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      color: #dc2626;
+      cursor: pointer;
+      z-index: 5;
+      line-height: 28px;
+      text-align: center;
+    }
+
+    .product-body {
+      padding: 14px;
+    }
+
+    .product-category {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 6px;
+      height: 40px;
+      overflow: hidden;
+    }
+
+    .product-rating {
+      font-size: 12px;
+      color: #f59e0b;
+      margin-bottom: 8px;
+    }
+
+    .rating-count {
+      color: #64748b;
+      font-size: 11px;
+    }
+
+    .price-box {
+      margin-bottom: 10px;
+    }
+
+    .current-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2563eb;
+      margin-right: 6px;
+    }
+
+    .old-price {
+      font-size: 13px;
+      color: #94a3b8;
+      text-decoration: line-through;
+    }
+
+    .btn-add-cart {
+      display: block;
+      width: 100%;
+      background-color: #0f172a;
+      color: #ffffff;
+      border: none;
+      padding: 8px 0;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-add-cart i {
+      margin-right: 5px;
+    }
+
+    /* ===================================================
+       ៧. DUAL PROMO BANNER (SIDE-BY-SIDE INLINE-BLOCK)
+       =================================================== */
+    .promo-section {
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .promo-box {
+      position: relative; /* ១៧. Position Relative: សម្រាប់ដាក់ Tag ក្នុងប្រអប់ */
+      display: inline-block;
+      width: 48.5%; /* កំណត់ទំហំ ៤៨.៥% ឱ្យនៅទន្ទឹមគ្នាក្នុងជួរតែមួយ (Side by Side) */
+      margin: 0 0.6%;
+      min-height: 150px;
+      border-radius: 8px;
+      overflow: hidden;
+      vertical-align: top;
+      color: #ffffff;
+      padding: 22px 20px;
+    }
+
+    .promo-1 {
+      background-color: #1e3a8a;
+    }
+
+    .promo-2 {
+      background-color: #14532d;
+    }
+
+    .promo-tag-absolute {
+      position: absolute; /* ១៨. Position Absolute: ផ្លាក Tag ជ្រុងលើស្ដាំ */
+      top: 15px;
+      right: 15px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .promo-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .promo-desc {
+      font-size: 13px;
+      color: #e0e7ff;
+      margin-bottom: 14px;
+      max-width: 280px;
+    }
+
+    .promo-btn {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #0f172a;
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ===================================================
+       ៨. FOOTER
+       =================================================== */
+    .main-footer {
+      background-color: #0f172a;
+      color: #94a3b8;
+      padding: 40px 0 20px;
+      font-size: 13px;
+    }
+
+    .footer-col {
+      display: inline-block;
+      width: 23%;
+      margin: 0 0.8%;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .footer-title {
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .footer-newsletter {
+      position: relative; /* ១៩. Position Relative: សម្រាប់ដាក់ប៊ូតុង Submit ក្នុងប្រអប់អុីមែល */
+      margin-top: 10px;
+    }
+
+    .newsletter-input {
+      width: 100%;
+      height: 36px;
+      padding: 0 42px 0 12px;
+      border-radius: 4px;
+      border: 1px solid #334155;
+      background-color: #1e293b;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .newsletter-btn {
+      position: absolute; /* ២០. Position Absolute: ប៊ូតុងផ្ញើអុីមែល */
+      top: 4px;
+      right: 4px;
+      width: 28px;
+      height: 28px;
+      background-color: #2563eb;
+      border: none;
+      border-radius: 3px;
+      color: #ffffff;
+      cursor: pointer;
+      line-height: 28px;
+      text-align: center;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      margin-top: 30px;
+      padding-top: 18px;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* ===================================================
+       ៩. FLOATING WIDGETS (POSITION: FIXED & ABSOLUTE)
+       =================================================== */
+    .floating-cart-btn {
+      position: fixed; /* ២១. Position Fixed: ប៊ូតុងកន្ត្រកអណ្ដែតជ្រុងស្ដាំក្រោម */
+      bottom: 80px;
+      right: 25px;
+      width: 46px;
+      height: 46px;
+      background-color: #f59e0b;
+      color: #0f172a;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 46px;
+      font-size: 18px;
+      z-index: 999;
+    }
+
+    .cart-float-badge {
+      position: absolute; /* ២២. Position Absolute: ផ្លាកលេខលើ Floating Cart */
+      top: -3px;
+      right: -3px;
+      background-color: #dc2626;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      line-height: 14px;
+      text-align: center;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+    }
+
+    .floating-support-btn {
+      position: fixed; /* ២៣. Position Fixed: ប៊ូតុង Telegram អណ្ដែត */
+      bottom: 25px;
+      right: 25px;
+      height: 44px;
+      padding: 0 16px;
+      background-color: #0284c7;
+      color: #ffffff;
+      border-radius: 22px;
+      line-height: 44px;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 999;
+      display: inline-block;
+    }
+
+    .floating-support-btn i {
+      margin-right: 6px;
+      font-size: 16px;
+    }
+
+    .status-dot {
+      position: absolute; /* ២៤. Position Absolute: ចុចបៃតង Online Dot */
+      top: 2px;
+      right: 4px;
+      width: 10px;
+      height: 10px;
+      background-color: #16a34a;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+  </style> -->
+</head>
+<body>
+
+  <!-- ===================================================
+       ១. HEADER & SEARCH BAR (Position: Fixed & Max-width Aligned with Banner)
+       =================================================== -->
+  <header class="main-header">
+    <div class="header-container">
+      <!-- Left: Logo (តម្រឹមស្មើគែមឆ្វេង Banner) -->
+      <div class="header-left">
+        <a href="#" class="brand-logo">
+          <i class="fa-solid fa-bolt"></i>ElectroShop
+        </a>
+      </div>
+
+      <!-- Center: Search Box (Position: Relative + Absolute Button) -->
+      <div class="header-center">
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="ស្វែងរកទំនិញអេឡិចត្រូនិច, ទូរស័ព្ទ, កុំព្យូទ័រ...">
+          <button class="search-btn" title="ស្វែងរក">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Header Actions (តម្រឹមស្មើគែមស្ដាំ Banner) -->
+      <div class="header-right">
+        <!-- Wishlist -->
+        <a href="#" class="action-btn" title="បញ្ជីដែលចូលចិត្ត">
+          <i class="fa-regular fa-heart"></i>
+          <span class="icon-badge">2</span>
+        </a>
+
+        <!-- Cart -->
+        <a href="#" class="action-btn" title="កន្ត្រកទំនិញ">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="icon-badge">3</span>
+        </a>
+
+        <!-- Profile -->
+        <a href="#" class="action-btn" title="គណនី">
+          <i class="fa-regular fa-user"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================
+       ២. STICKY CATEGORIES (Position: Sticky)
+       =================================================== -->
+  <nav class="category-navbar">
+    <ul class="cat-list">
+      <li class="cat-item"><a href="#" class="cat-link active"><i class="fa-solid fa-border-all"></i> ទាំងអស់</a></li>
+      <li class="cat-item"><a href="#" class="cat-link hot-deal"><i class="fa-solid fa-fire"></i> Flash Sale</a></li>
+      <li class="cat-item"><a href="#" class="cat-link"><i class="fa-solid fa-mobile-screen"></i> ស្មាតហ្វូន</a></li>
+      <li class="cat-item"><a href="#" class="cat-link"><i class="fa-solid fa-laptop"></i> កុំព្យូទ័រយួរដៃ</a></li>
+      <li class="cat-item"><a href="#" class="cat-link"><i class="fa-solid fa-headphones"></i> កាស & សំឡេង</a></li>
+      <li class="cat-item"><a href="#" class="cat-link"><i class="fa-solid fa-clock"></i> នាឡិកាឆ្លាតវៃ</a></li>
+      <li class="cat-item"><a href="#" class="cat-link"><i class="fa-solid fa-camera"></i> គ្រឿងបន្លាស់</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <!-- ===================================================
+         ៣. HERO BANNER (Position: Relative & Absolute)
+         =================================================== -->
+    <section class="hero-section">
+      <div class="hero-banner">
+        <!-- Absolute Promo Tag (z-index: 10 ឱ្យនៅខាងលើរូបភាព) -->
+        <div class="hero-tag">
+          <i class="fa-solid fa-bolt"></i> បញ្ចុះតម្លៃពិសេស ៤០%
+        </div>
+
+        <!-- Left Content -->
+        <div class="hero-content">
+          <p class="hero-subtitle">New Generation Tech 2026</p>
+          <h1 class="hero-title">កំពូលបច្ចេកវិទ្យាទំនើប គុណភាពខ្ពស់ និងតម្លៃសមរម្យ</h1>
+          <p class="hero-desc">ទទួលបានបទពិសោធន៍ទិញទំនិញអេឡិចត្រូនិចសុទ្ធ ១០០% ជាមួយនឹងការធានាផ្លូវការ និងការដឹកជញ្ជូនរហ័សទូទាំងប្រទេស។</p>
+          <a href="#products" class="btn-hero"><i class="fa-solid fa-bag-shopping"></i> ទិញឥឡូវនេះ</a>
+        </div>
+
+        <!-- Right Image Container (Position: Relative + Absolute Pill) -->
+        <div class="hero-image-wrap">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80" alt="Wireless Headphone" class="hero-img">
+          <div class="floating-pill">
+            <i class="fa-solid fa-star"></i> ផលិតផលលក់ដាច់បំផុតប្រចាំខែ
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         ៤. FEATURES SECTION (៤ ប្រអប់តម្រៀបស្មើគ្នា)
+         =================================================== -->
+    <section class="features-section">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+        <h4 class="feature-title">ដឹកជញ្ជូនឥតគិតថ្លៃ</h4>
+        <p class="feature-desc">សម្រាប់ការកុម្ម៉ង់ចាប់ពី $50 ឡើងទៅ</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h4 class="feature-title">ធានាផ្លូវការ ១០០%</h4>
+        <p class="feature-desc">ទំនិញសុទ្ធមានការធានាត្រឹមត្រូវ</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-credit-card"></i></div>
+        <h4 class="feature-title">ទូទាត់មានសុវត្ថិភាព</h4>
+        <p class="feature-desc">គាំទ្រ ABA, Bakong, Visa</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+        <h4 class="feature-title">បម្រើអតិថិជន ២៤/៧</h4>
+        <p class="feature-desc">ប្រឹក្សា និងដោះស្រាយរហ័សទាន់ចិត្ត</p>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         ៥. FLASH DEALS / PRODUCTS (Position: Relative & Absolute)
+         =================================================== -->
+    <section id="products">
+      <div class="section-header">
+        <h2 class="sec-title"><i class="fa-solid fa-fire"></i> ទំនិញពេញនិយម & កំពុងបញ្ចុះតម្លៃ</h2>
+        <div class="see-all-wrap">
+          <a href="#" class="see-all-link">មើលទាំងអស់ <i class="fa-solid fa-angle-right"></i></a>
+        </div>
+      </div>
+
+      <div class="product-grid">
+
+        <!-- Product 1 (Discount Badge Absolute) -->
+        <div class="product-card">
+          <div class="product-img-box">
+            <span class="badge-discount">-30%</span>
+            <button class="btn-card-wishlist" title="ចូលចិត្ត"><i class="fa-regular fa-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&q=80" alt="Smartwatch" class="product-img">
+          </div>
+          <div class="product-body">
+            <p class="product-category">Smartwatch</p>
+            <h3 class="product-title">Ultra Smartwatch Series 9 (AMOLED Screen)</h3>
+            <div class="product-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <span class="rating-count">(4.8)</span>
+            </div>
+            <div class="price-box">
+              <span class="current-price">$69.00</span>
+              <span class="old-price">$99.00</span>
+            </div>
+            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> បញ្ចូលកន្ត្រក</button>
+          </div>
+        </div>
+
+        <!-- Product 2 (Hot Badge Absolute) -->
+        <div class="product-card">
+          <div class="product-img-box">
+            <span class="badge-hot">Hot</span>
+            <button class="btn-card-wishlist" title="ចូលចិត្ត"><i class="fa-regular fa-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&q=80" alt="Headphone" class="product-img">
+          </div>
+          <div class="product-body">
+            <p class="product-category">Audio & Sounds</p>
+            <h3 class="product-title">Studio Pro Wireless Headphone (Bass Boost)</h3>
+            <div class="product-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <span class="rating-count">(5.0)</span>
+            </div>
+            <div class="price-box">
+              <span class="current-price">$129.00</span>
+              <span class="old-price">$159.00</span>
+            </div>
+            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> បញ្ចូលកន្ត្រក</button>
+          </div>
+        </div>
+
+        <!-- Product 3 (New Badge Absolute) -->
+        <div class="product-card">
+          <div class="product-img-box">
+            <span class="badge-new">New</span>
+            <button class="btn-card-wishlist" title="ចូលចិត្ត"><i class="fa-regular fa-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=500&q=80" alt="Laptop" class="product-img">
+          </div>
+          <div class="product-body">
+            <p class="product-category">Laptops</p>
+            <h3 class="product-title">MacBook Pro M3 Max 16-inch (32GB / 1TB)</h3>
+            <div class="product-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <span class="rating-count">(4.9)</span>
+            </div>
+            <div class="price-box">
+              <span class="current-price">$2,499.00</span>
+              <span class="old-price">$2,699.00</span>
+            </div>
+            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> បញ្ចូលកន្ត្រក</button>
+          </div>
+        </div>
+
+        <!-- Product 4 (Discount Badge Absolute) -->
+        <div class="product-card">
+          <div class="product-img-box">
+            <span class="badge-discount">-20%</span>
+            <button class="btn-card-wishlist" title="ចូលចិត្ត"><i class="fa-regular fa-heart"></i></button>
+            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&q=80" alt="Earbuds" class="product-img">
+          </div>
+          <div class="product-body">
+            <p class="product-category">Accessories</p>
+            <h3 class="product-title">AirPods Pro Wireless Earbuds (ANC 2.0)</h3>
+            <div class="product-rating">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+              <span class="rating-count">(4.2)</span>
+            </div>
+            <div class="price-box">
+              <span class="current-price">$199.00</span>
+              <span class="old-price">$249.00</span>
+            </div>
+            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i> បញ្ចូលកន្ត្រក</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================
+       ៦. DUAL PROMO BANNER (SIDE-BY-SIDE INLINE-BLOCK)
+       =================================================== -->
+    <section class="promo-section">
+      <!-- Promo 1 -->
+      <div class="promo-box promo-1">
+        <span class="promo-tag-absolute">Special Offer</span>
+        <h3 class="promo-title">Speaker & Audio System</h3>
+        <p class="promo-desc">ឧបករណ៍បំពងសំឡេងគុណភាពខ្ពស់ ផ្តល់នូវសូរសំឡេងច្បាស់ល្អឥតខ្ចោះ។</p>
+        <a href="#" class="promo-btn">ស្វែងយល់បន្ថែម <i class="fa-solid fa-arrow-right"></i></a>
+      </div><!--
+      --><!-- Promo 2 --><!--
+      --><div class="promo-box promo-2">
+        <span class="promo-tag-absolute">Up to -25%</span>
+        <h3 class="promo-title">Gaming Setup & Gears</h3>
+        <p class="promo-desc">ក្តារចុច មេកានិច និង Mouse ទំនើបសម្រាប់អ្នកលេងហ្គេមអាជីព។</p>
+        <a href="#" class="promo-btn">ស្វែងយល់បន្ថែម <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </section>
+
+  </div> <!-- End Container -->
+
+  <!-- ===================================================
+       ៧. FOOTER
+       =================================================== -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-col">
+        <h4 class="footer-title"><i class="fa-solid fa-bolt" style="color:#38bdf8;"></i> ElectroShop</h4>
+        <p style="margin-bottom: 12px; line-height: 1.6;">ហាងទំនិញអេឡិចត្រូនិចឈានមុខគេ ជាមួយផលិតផលសុទ្ធ និងសេវាកម្មរហ័សទាន់ចិត្ត។</p>
+        <p><i class="fa-solid fa-location-dot"></i> រាជធានីភ្នំពេញ, ប្រទេសកម្ពុជា</p>
+        <p><i class="fa-solid fa-phone"></i> +855 12 345 678</p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">តំណភ្ជាប់រហ័ស</h4>
+        <ul class="footer-links">
+          <li><a href="#">ទំព័រដើម</a></li>
+          <li><a href="#">ទំនិញទាំងអស់</a></li>
+          <li><a href="#">ប្រូម៉ូសិនពិសេស</a></li>
+          <li><a href="#">អំពីយើង</a></li>
+          <li><a href="#">ទំនាក់ទំនង</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">សេវាកម្មអតិថិជន</h4>
+        <ul class="footer-links">
+          <li><a href="#">គោលការណ៍ដឹកជញ្ជូន</a></li>
+          <li><a href="#">ការធានា និងប្តូរទំនិញ</a></li>
+          <li><a href="#">របៀបទិញទំនិញ</a></li>
+          <li><a href="#">សំណួរញឹកញាប់ (FAQ)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-title">ចុះឈ្មោះទទួលដំណឹង</h4>
+        <p style="font-size: 13px; margin-bottom: 8px;">ទទួលបានព័ត៌មានប្រូម៉ូសិនថ្មីៗមុនគេតាមអុីមែល</p>
+        <div class="footer-newsletter">
+          <input type="email" class="newsletter-input" placeholder="បញ្ចូលអុីមែលរបស់អ្នក...">
+          <button class="newsletter-btn" title="ផ្ញើ"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 ElectroShop. រក្សាសិទ្ធិគ្រប់យ៉ាង។ កូដរៀបចំត្រឹម CSS Display & CSS Position។</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================
+       ៨. FLOATING WIDGETS (POSITION: FIXED & ABSOLUTE)
+       =================================================== -->
+  
+  <!-- Floating Cart Button (Fixed + Absolute Count Badge) -->
+  <a href="#" class="floating-cart-btn" title="កន្ត្រកទំនិញ">
+    <span class="cart-float-badge">3</span>
+    <i class="fa-solid fa-cart-shopping"></i>
+  </a>
+
+  <!-- Floating Telegram Support Button (Fixed + Absolute Status Dot) -->
+  <a href="https://t.me/" target="_blank" class="floating-support-btn">
+    <span class="status-dot"></span>
+    <i class="fa-brands fa-telegram"></i> ជំនួយការតេឡេក្រាម
+  </a>
+
+</body>
+</html>
